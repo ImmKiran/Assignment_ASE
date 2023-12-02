@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Survey Form</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function submitForm() {
+      // Get form values
+      var firstName = document.getElementById('firstName').value;
+      var lastName = document.getElementById('lastName').value;
+      var dob = document.getElementById('dob').value;
+      var country = document.getElementById('country').value;
+      var gender = document.querySelectorAll('input[name="gender"]:checked');
+      var profession = document.getElementById('profession').value;
+      var email = document.getElementById('email').value;
+      var mobileNumber = document.getElementById('mobileNumber').value;
+
+      // Validate required fields
+      if (firstName === '' || lastName === '' || dob === '' || country === '' || gender.length === 0 || profession === '' || email === '' || mobileNumber === '') {
+        alert('All fields are required!');
+        return;
+      }
+
+      // Construct the popup content
+      var popupContent = 'First Name: ' + firstName + '\n';
+      popupContent += 'Last Name: ' + lastName + '\n';
+      popupContent += 'Date of Birth: ' + dob + '\n';
+      popupContent += 'Country: ' + country + '\n';
+      popupContent += 'Gender: ' + gender[0].value + '\n';
+      popupContent += 'Profession: ' + profession + '\n';
+      popupContent += 'Email: ' + email + '\n';
+      popupContent += 'Mobile Number: ' + mobileNumber + '\n';
+
+      // Show popup with selected values
+      alert('Selected Values:\n' + popupContent);
+
+      // Reset the form
+      document.getElementById('surveyForm').reset();
+    }
+
+    function resetForm() {
+      // Reset the form
+      document.getElementById('surveyForm').reset();
+    }
+  </script>
+</head>
+<body>
+  <form id="surveyForm">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" required><br>
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" required><br>
+
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" required><br>
+
+    <label for="country">Country:</label>
+    <select id="country" name="country" required>
+      <option value="">Select Country</option>
+      <!-- Add country options here -->
+      <option value="INDIA">USA</option>
+      <option value="Canada">Canada</option>
+      <option value="USA">USA</option>
+      <!-- Add more countries as needed -->
+    </select><br>
+
+    <label>Gender:</label>
+    <input type="radio" id="male" name="gender" value="Male"> <label for="male">Male</label>
+    <input type="radio" id="female" name="gender" value="Female"> <label for="female">Female</label><br>
+
+    <label for="profession">Profession:</label>
+    <input type="text" id="profession" name="profession" required><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br>
+
+    <label for="mobileNumber">Mobile Number:</label>
+    <input type="tel" id="mobileNumber" name="mobileNumber" required><br>
+
+    <button type="button" onclick="submitForm()">Submit</button>
+    <button type="button" onclick="resetForm()">Reset</button>
+  </form>
+</body>
+</html>
